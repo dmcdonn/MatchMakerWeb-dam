@@ -1,0 +1,155 @@
+<DOCTYPE html>
+<html lange="en">
+
+<!--
+    Author: Delaney McDonnell
+    Project: MatchMaker Web
+    Project Name: Fated Match
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <title>MatchMaker Web</title>
+</head>
+
+<body>
+    <h1>Fated Match</h1>
+    <p>Tired of spending your days all by yourself? Struggling to actually connect with someone? Well do we have a solution for you!
+    Welcome to Fated Match 2.0! All you have to do is express your opinion of five statements. Each response option correlates with a number 1-5 which 
+    is then used to calculate your compatability. Good luck and answer honestly!
+    1 = Strongly Disagree,
+    2 = Disagree,
+    3 = Neither agree or disagree,
+    4 = Agree,
+    5 = Strongly agree</p>
+
+
+
+    <label>Fall is the best season!</label><br />
+    <select id="q1">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither agree or disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br />
+
+    <label>Videogames are amazing!</label><br />
+    <select id="q2">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither agree or disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br />
+
+    <label>Hot temperatures are better than cold temperatures.</label><br />
+    <select id="q3">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither agree or disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br />
+
+    <label>Travelling is fantastic!</label><br />
+    <select id="q4">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither agree or disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br />
+
+    <label>Hoodies are the Best!</label><br />
+    <select id="q5">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither agree or disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br />
+
+    <button onclick="calculateCompatability()">Calculate Compatability</button>
+    <p id="Compatability"></p>
+
+
+
+
+<script>
+console.log("Starting Fated Match...");
+
+
+function calculateCompatability() {
+    console.log("calculateCompatability()");
+
+    const DESIRED_RESPONSE = [
+        5, /* strongly agree */
+        5, /* strongly agree */
+        1, /* strongly disagree */
+        4, /* disagree */
+        5, /* strongly agree */
+        ]
+
+    const MAX_SCORE = 25;
+
+
+    let question1Response = document.getElementById("q1").selectedOptions[0].value;
+    let question2Response = document.getElementById("q2").selectedOptions[0].value;
+    let question3Response = document.getElementById("q3").selectedOptions[0].value;
+    let question4Response = document.getElementById("q4").selectedOptions[0].value;
+    let question5Response = document.getElementById("q5").selectedOptions[0].value;
+
+    console.log("Question 1 Answers:");
+    console.log(document.getElementById("q1").selectedOptions[0].value);
+    console.log(question1Response);
+
+    console.log("Question 2 Answers:");
+    console.log(document.getElementById("q2").selectedOptions[0].value);
+    console.log(question2Response);
+
+    console.log("Question 3 Answers:");
+    console.log(document.getElementById("q3").selectedOptions[0].value);
+    console.log(question3Response);
+
+    console.log("Question 4 Answers:");
+    console.log(document.getElementById("q4").selectedOptions[0].value);
+    console.log(question4Response);
+
+    console.log("Question 5 Answers:");
+    console.log(document.getElementById("q5").selectedOptions[0].value);
+    console.log(question5Response);
+
+    let question1Compatability = 5 - Math.abs(question1Response - DESIRED_RESPONSE[0]);
+    let question2Compatability = 5 - Math.abs(question2Response - DESIRED_RESPONSE[1]);
+    let question3Compatability = 5 - Math.abs(question3Response - DESIRED_RESPONSE[2]);
+    let question4Compatability = 5 - Math.abs(question4Response - DESIRED_RESPONSE[3]);
+    let question5Compatability = 5 - Math.abs(question5Response - DESIRED_RESPONSE[4]);
+
+    console.log(question1Compatability);
+    console.log(question2Compatability);
+    console.log(question3Compatability);
+    console.log(question4Compatability);
+    console.log(question5Compatability);
+
+    let totalCompatability = question1Compatability + question2Compatability + question3Compatability + question4Compatability + question5Compatability;
+
+    totalCompatability *= 100 / MAX_SCORE;
+    totalCompatability = Math.round(totalCompatability);
+    console.log("totalCompatability="+ totalCompatability);
+    
+
+    letUserResponse="Your compatability for question 1 was: "+question1Response+"/"+question2Response+"/"+question3Response+"/"+question4Response+"/"+question5Response+"/";
+
+
+    document.getElementById("Compatability").innerHTML = "Your Compatability is: "+totalCompatability;
+}
+</script>
+
+</body>
+</html>
